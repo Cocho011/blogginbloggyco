@@ -5,13 +5,13 @@ const { User, Blog, Comment } = require("../../models");
 router.get("/", (req, res) => {
     Comment.findAll({ include: [User, Blog] })
         .then(dbComments => res.json(dbComments))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.get("/:id", (req, res) => {
     Comment.findByPk(req.params.id, { include: [User, Blog] })
         .then(dbComment => res.json(dbComment))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.post("/", (req, res) => {
@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
         blogId: req.body.blogId
     })
         .then(newComment => res.json(newComment))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.put("/:id", (req, res) => {
@@ -34,7 +34,7 @@ router.put("/:id", (req, res) => {
     Comment.update(req.body, {
         where: { id: req.params.id }
     }).then(updatedComment => res.json(updatedComment))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.delete("/:id", (req, res) => {
@@ -44,7 +44,7 @@ router.delete("/:id", (req, res) => {
     Comment.destroy({
         where: { id: req.params.id }
     }).then(delComment => res.json(delComment))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 module.exports = router;

@@ -6,13 +6,13 @@ const bcrypt = require("bcrypt");
 router.get("/", (req, res) => {
     User.findAll({ include: [Blog, Comment] })
         .then(dbUsers => res.json(dbUsers))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.get("/:id", (req, res) => {
     User.findByPk(req.params.id, { include: [Blog, Comment] })
         .then(dbUser => res.json(dbUser))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.post("/", (req, res) => {
@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
             }
             res.json(newUser);
         })
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.post("/login", (req, res) => {
@@ -43,7 +43,7 @@ router.post("/login", (req, res) => {
         } else {
             return res.status(400).json({ msg: "wrong login credentials" });
         }
-    }).catch(err => res.status(500).json({ msg: "an error occured", err }));
+    }).catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.put("/:id", (req, res) => {
@@ -51,14 +51,14 @@ router.put("/:id", (req, res) => {
         where: { id: req.params.id },
         individualHooks: true
     }).then(updatedUser => res.json(updatedUser))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.delete("/:id", (req, res) => {
     User.destroy({
         where: { id: req.params.id }
     }).then(delUser => res.json(delUser))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 module.exports = router;

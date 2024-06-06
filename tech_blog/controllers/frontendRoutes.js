@@ -35,23 +35,4 @@ router.get("/dashboard", (req, res) => {
 });
 
 router.get("/blogs/:id", (req, res) => {
-    if (!req.session.user) {
-        return res.redirect('/login');
-    }
-    Blog.findByPk(req.params.id, { include: [User, { model: Comment, include: [User] }] })
-        .then(dbBlog => {
-            const hbsBlog = dbBlog.get({ plain: true });
-            const loggedIn = req.session.user ? true : false;
-            if (dbBlog.userId != req.session.user.id) {
-                return res.render('comment', { hbsBlog, loggedIn, username: req.session.user?.username });
-            }
-            res.render("updateDelete", { hbsBlog, loggedIn, username: req.session.user?.username });
-        })
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
-});
-
-router.get("*", (req, res) => {
-    res.redirect("/");
-});
-
-module.exports = router;
+    

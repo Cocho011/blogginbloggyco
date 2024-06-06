@@ -6,13 +6,13 @@ const withAuth = require('../../util/auth');
 router.get("/", (req, res) => {
     Blog.findAll({ include: [User, Comment] })
         .then(dbBlogs => res.json(dbBlogs))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.get("/:id", (req, res) => {
     Blog.findByPk(req.params.id, { include: [User, Comment] })
         .then(dbBlog => res.json(dbBlog))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.post("/", withAuth, (req, res) => {
@@ -22,21 +22,21 @@ router.post("/", withAuth, (req, res) => {
         userId: req.session.user.id
     })
         .then(newBlog => res.json(newBlog))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.put("/:id", withAuth, (req, res) => {
     Blog.update(req.body, {
         where: { id: req.params.id }
     }).then(updatedBlog => res.json(updatedBlog))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 router.delete("/:id", withAuth, (req, res) => {
     Blog.destroy({
         where: { id: req.params.id }
     }).then(delBlog => res.json(delBlog))
-        .catch(err => res.status(500).json({ msg: "an error occured", err }));
+        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
 });
 
 module.exports = router;
