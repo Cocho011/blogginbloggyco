@@ -6,6 +6,16 @@ This project is a CMS-style blog site, similar to WordPress, where developers ca
 
 Deployed site URL: 
 
+Screenshots of deployed app: 
+
+![Homepage](<tech_blog/assets/Tech Blog Home Screenshot.png>) 
+
+![Dashboard](<tech_blog/assets/Tech Blog Dashboard and Create a New Post Screenshot.png>) 
+
+![Login](<tech_blog/assets/Tech Blog Login Screenshot.png>) 
+
+![Signup](<tech_blog/assets/Tech Blog Signup Screenshot.png>)
+
 
 
 ## Table of Contents
