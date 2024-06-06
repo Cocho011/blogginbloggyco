@@ -50,11 +50,4 @@ router.get("/blogs/:id", (req, res) => {
             // If your post -> render update/delete page over your dashboard
             res.render("updateDelete", { hbsBlog, loggedIn, username: req.session.user?.username });
         })
-        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
-});
-
-router.get("*", (req, res) => {
-    res.redirect("/");
-});
-
-module.exports = router;
+        .catch(err => res.s
