@@ -14,4 +14,4 @@ router.use('/api/comments', commentRoutes);
 // Use frontend routes for rendering pages
 router.use('/', frontendRoutes);
 
-module.exports = router; // Export all routes
+module.exports = router;

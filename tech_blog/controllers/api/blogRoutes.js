@@ -54,4 +54,4 @@ router.delete('/:id', (req, res) => {
         .catch(err => res.status(500).json({ msg: 'An error occurred', err }));
 });
 
-module.exports = router; // Export the blog routes
+module.exports = router;

@@ -49,6 +49,4 @@ app.use((err, req, res, next) => {
 // Sync Sequelize models to the database, then start the server
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
-        console.log(`App listening on PORT ${PORT}`);
-    });
-});
+        console.log(`App listening on PORT ${PORT}
