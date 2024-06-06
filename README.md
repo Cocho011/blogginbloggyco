@@ -55,7 +55,7 @@ Deployed site URL:
 
 ## File Structure
 
-![alt text](<assets/File Structure for CMS Style Blog Site.png>)
+![alt text](<tech_blog/assets/File Structure for CMS Style Blog Site.png>)
 
 ### Comments on the File Structure
 
