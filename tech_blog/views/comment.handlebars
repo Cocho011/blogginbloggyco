@@ -1,32 +1,36 @@
-<h1>The Tech Blog</h1>
-<section id="currentBlogComment">
-  <section class="card">
-      <div class="card-body">
+<div class="card mt-4">
+    <div class="card-body">
         <h3 class="card-title">{{hbsBlog.title}}</h3>
-        <h5>Posted by {{hbsBlog.user.username}} on {{hbsBlog.createdAt}}</h5>
+        <h5 class="text-muted">Posted by {{hbsBlog.user.username}} on {{hbsBlog.createdAt}}</h5>
         <p class="card-text">{{hbsBlog.content}}</p>
     </div>
-  </section>
-{{#each hbsBlog.comments}}
-  <section class="card">
-    <div class="card-body">
-      <p>Comment</p>
-      <p class="card-text">{{body}}</p>
-    </div>
-  </section>
-{{/each}}
-</section>
-<section class="card text-center">
-<div class="card-body">
-  <h3 class="card-title">Comment</h3>
-  <form id="newComment">
-    <div class="card-text"></div>
-      <input id="hiddenCommentId" hidden="true" value="{{hbsBlog.id}}"></input>
-      <textarea id="comment" placeholder="Type your comment here..."></textarea>
-    </div>
-    <button id="create">Submit</button>
-</form>
 </div>
-</section>
+
+{{#if loggedIn}}
+    <div id="newComment" class="card text-center mt-4">
+        <div class="card-body">
+            <h3 class="card-title">Add a Comment</h3>
+            <form>
+                <div class="form-group">
+                    <textarea id="comment" class="form-control" placeholder="Type your comment here..."></textarea>
+                </div>
+                <button id="createComment" class="btn btn-primary">Submit</button>
+                <input type="hidden" id="hiddenCommentId" value="{{hbsBlog.id}}">
+            </form>
+        </div>
+    </div>
+{{/if}}
+
+<div class="mt-4">
+    {{#each hbsBlog.comments}}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{user.username}}</h5>
+                <p class="card-text">{{body}}</p>
+                <p class="text-muted">{{createdAt}}</p>
+            </div>
+        </div>
+    {{/each}}
+</div>
 
 <script src="/js/comment.js"></script>

@@ -31,6 +31,6 @@ const plantSeeds = async () => {
     } catch (err) {
         console.log(err);
     }
-}
+};
 
 plantSeeds();

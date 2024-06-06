@@ -1,10 +1,36 @@
-<h1></h1>
-  <section class="card">
-      <a href="/blogs/{{hid}}" class="card-body">
+<div class="card mt-4">
+    <div class="card-body">
         <h3 class="card-title">{{title}}</h3>
-        <h4>Posted by {{user.username}} on {{createdAt}}</h4>
+        <h5 class="text-muted">Posted by {{user.username}} on {{createdAt}}</h5>
         <p class="card-text">{{content}}</p>
-    </a>
-  </section>
+    </div>
+</div>
 
-<script src="/js/dashboard.js"></script>
+{{#if loggedIn}}
+    <div id="newComment" class="card text-center mt-4">
+        <div class="card-body">
+            <h3 class="card-title">Add a Comment</h3>
+            <form>
+                <div class="form-group">
+                    <textarea id="comment" class="form-control" placeholder="Type your comment here..."></textarea>
+                </div>
+                <button id="createComment" class="btn btn-primary">Submit</button>
+                <input type="hidden" id="hiddenCommentId" value="{{id}}">
+            </form>
+        </div>
+    </div>
+{{/if}}
+
+<div class="mt-4">
+    {{#each comments}}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{user.username}}</h5>
+                <p class="card-text">{{body}}</p>
+                <p class="text-muted">{{createdAt}}</p>
+            </div>
+        </div>
+    {{/each}}
+</div>
+
+<script src="/js/comment.js"></script>

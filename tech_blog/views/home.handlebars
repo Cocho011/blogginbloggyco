@@ -1,10 +1,14 @@
-<h1>The Tech Blog</h1>
-{{#each blogs}}
-  <section class="card">
-    <a href="/blogs/{{id}}" class="card-body">
-        <h3 class="card-title">{{title}}</h3>
-        <h5>Posted by {{user.username}} on {{createdAt}}</h5>
-        <p class="card-text">{{content}}</p>
-    </a>
-  </section>
-{{/each}}
+<h1 class="text-center mb-4">The Tech Blog</h1>
+<div class="row">
+    {{#each blogs}}
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <a href="/blogs/{{id}}" class="card-body text-decoration-none">
+                    <h3 class="card-title">{{title}}</h3>
+                    <h5 class="text-muted">Posted by {{user.username}} on {{createdAt}}</h5>
+                    <p class="card-text">{{content}}</p>
+                </a>
+            </div>
+        </div>
+    {{/each}}
+</div>

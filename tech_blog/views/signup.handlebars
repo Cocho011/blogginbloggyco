@@ -1,19 +1,18 @@
-<section class="card text-center">
-      <div class="card-body">
+<div class="card text-center mt-4">
+    <div class="card-body">
         <h3 class="card-title">Signup</h3>
         <form id="signup">
-            <div class="card-text">
-            <label for="signupUsername">Username</label>
-            <input type="text" placeholder="username" id="signupUsername">
+            <div class="form-group">
+                <label for="signupUsername">Username</label>
+                <input type="text" class="form-control" placeholder="username" id="signupUsername">
             </div>
-            <div class="card-text">
-            <label for="signupPassword">Password</label>
-            <input type="text" placeholder="password" id="signupPassword">
+            <div class="form-group">
+                <label for="signupPassword">Password</label>
+                <input type="password" class="form-control" placeholder="password" id="signupPassword">
             </div>
-            <button>Signup!</button><br>
-            <a href="/login">Login instead</a>
+            <button class="btn btn-primary">Signup!</button><br>
+            <a href="/login" class="btn btn-link mt-2">Login instead</a>
         </form>
     </div>
-</section>
-
+</div>
 <script src="/js/signup.js"></script>

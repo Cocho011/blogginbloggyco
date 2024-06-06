@@ -1,47 +1,28 @@
-var existingBlogs = document.querySelector("#existingblogs");
-var createNew = document.querySelector("#createNew");
-var newPost = document.querySelector("#newpost");
-var newBlog = document.querySelector('#newBlog');
-
-function hideCreateNew() {
-    createNew.hidden = true;
-}
-
-hideCreateNew();
-
-newPost.addEventListener("submit", event => {
+document.querySelector("#newBlog").addEventListener("submit", event => {
     event.preventDefault();
-    console.log('click');
-    existingBlogs.hidden = true;
-    newPost.hidden = true;
-    createNew.hidden = false;
+    const title = document.querySelector("#title").value.trim();
+    const content = document.querySelector("#content").value.trim();
+
+    if (title && content) {
+        fetch("/api/blogs", {
+            method: "POST",
+            body: JSON.stringify({ title, content }),
+            headers: { "Content-Type": "application/json" }
+        })
+            .then(response => {
+                if (response.ok) {
+                    document.location.reload();
+                } else {
+                    alert("Failed to create blog post.");
+                }
+            })
+            .catch(err => console.error(err));
+    }
 });
 
-newBlog.addEventListener("submit", event => {
-    var title = document.querySelector("#title").value;
-    var content = document.querySelector("#content").value;
+document.querySelector("#newpost").addEventListener("submit", event => {
     event.preventDefault();
-    console.log('you clicked me');
-    if (!title || !content) {
-        alert('Please enter both title and content');
-        return;
-    }
-    const blogObj = {
-        title: title,
-        content: content,
-    }
-    fetch("/api/blogs", {
-        method: "POST",
-        body: JSON.stringify(blogObj),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }).then(res => {
-        if (res.ok) {
-            createNew.setAttribute("hidden", "false");
-            location.reload();
-        } else {
-            alert("Error - please try again");
-        }
-    });
+    document.querySelector("#existingblogs").hidden = true;
+    document.querySelector("#newpost").hidden = true;
+    document.querySelector("#createNew").hidden = false;
 });
