@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
-require('dotenv').config();
+require('dotenv').config(); // Load environment variables from .env file
 
+// Create a new Sequelize instance with database configuration from environment variables
 const sequelize = new Sequelize(
     process.env.DB_NAME,
     process.env.DB_USER,
@@ -12,4 +13,4 @@ const sequelize = new Sequelize(
     }
 );
 
-module.exports = sequelize;
+module.exports = sequelize; // Export the configured Sequelize instance

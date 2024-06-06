@@ -3,11 +3,12 @@ const router = express.Router();
 const { User } = require('../../models');
 const bcrypt = require('bcrypt');
 
-// Sign up route
+// Sign up route - Create a new user
 router.post('/', async (req, res) => {
     try {
         const newUser = await User.create(req.body);
 
+        // Save user data to session
         req.session.save(() => {
             req.session.user = {
                 id: newUser.id,
@@ -22,7 +23,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Login route
+// Login route - Authenticate a user
 router.post('/login', async (req, res) => {
     try {
         const userData = await User.findOne({ where: { username: req.body.username } });
@@ -39,6 +40,7 @@ router.post('/login', async (req, res) => {
             return;
         }
 
+        // Save user data to session
         req.session.save(() => {
             req.session.user = {
                 id: userData.id,
@@ -53,7 +55,7 @@ router.post('/login', async (req, res) => {
     }
 });
 
-// Logout route
+// Logout route - End user session
 router.post('/logout', (req, res) => {
     if (req.session.user) {
         req.session.destroy(() => {
@@ -64,4 +66,4 @@ router.post('/logout', (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = router; // Export the user routes

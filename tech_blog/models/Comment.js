@@ -1,22 +1,27 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
+// Define the Comment model
 class Comment extends Model {}
 
-Comment.init({
-    body: {
-        type: DataTypes.TEXT,
-        allowNull: false
+// Initialize the Comment model
+Comment.init(
+    {
+        body: {
+            type: DataTypes.TEXT,
+            allowNull: false
+        },
+        date: {
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
+        }
     },
-    date: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
+    {
+        sequelize,
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'comment'
     }
-}, {
-    sequelize,
-    freezeTableName: true,
-    underscored: true,
-    modelName: 'comment',
-});
+);
 
-module.exports = Comment;
+module.exports = Comment; // Export the Comment model

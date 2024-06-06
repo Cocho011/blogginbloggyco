@@ -2,6 +2,7 @@ const User = require("./User");
 const Blog = require("./Blog");
 const Comment = require("./Comment");
 
+// Define associations between models
 User.hasMany(Blog, {
     foreignKey: 'userId',
     onDelete: 'CASCADE'
@@ -33,4 +34,4 @@ module.exports = {
     User,
     Blog,
     Comment
-};
+}; // Export the models with associations

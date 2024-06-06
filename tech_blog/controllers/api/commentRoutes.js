@@ -1,22 +1,25 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { User, Blog, Comment } = require("../../models");
+const { User, Blog, Comment } = require('../../models');
 
-router.get("/", (req, res) => {
+// Get all comments and their associated users and blogs
+router.get('/', (req, res) => {
     Comment.findAll({ include: [User, Blog] })
         .then(dbComments => res.json(dbComments))
-        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
+        .catch(err => res.status(500).json({ msg: 'An error occurred', err }));
 });
 
-router.get("/:id", (req, res) => {
+// Get a specific comment by its ID, including the associated user and blog
+router.get('/:id', (req, res) => {
     Comment.findByPk(req.params.id, { include: [User, Blog] })
         .then(dbComment => res.json(dbComment))
-        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
+        .catch(err => res.status(500).json({ msg: 'An error occurred', err }));
 });
 
-router.post("/", (req, res) => {
+// Create a new comment
+router.post('/', (req, res) => {
     if (!req.session.user) {
-        return res.status(401).json({ msg: "Please login first!" });
+        return res.status(401).json({ msg: 'Please login first!' });
     }
     Comment.create({
         body: req.body.body,
@@ -24,27 +27,31 @@ router.post("/", (req, res) => {
         blogId: req.body.blogId
     })
         .then(newComment => res.json(newComment))
-        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
+        .catch(err => res.status(500).json({ msg: 'An error occurred', err }));
 });
 
-router.put("/:id", (req, res) => {
+// Update a comment by its ID
+router.put('/:id', (req, res) => {
     if (!req.session.user) {
-        return res.status(401).json({ msg: "Please login first!" });
+        return res.status(401).json({ msg: 'Please login first!' });
     }
     Comment.update(req.body, {
         where: { id: req.params.id }
-    }).then(updatedComment => res.json(updatedComment))
-        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
+    })
+        .then(updatedComment => res.json(updatedComment))
+        .catch(err => res.status(500).json({ msg: 'An error occurred', err }));
 });
 
-router.delete("/:id", (req, res) => {
+// Delete a comment by its ID
+router.delete('/:id', (req, res) => {
     if (!req.session.user) {
-        return res.status(401).json({ msg: "Please login first!" });
+        return res.status(401).json({ msg: 'Please login first!' });
     }
     Comment.destroy({
         where: { id: req.params.id }
-    }).then(delComment => res.json(delComment))
-        .catch(err => res.status(500).json({ msg: "an error occurred", err }));
+    })
+        .then(delComment => res.json(delComment))
+        .catch(err => res.status(500).json({ msg: 'An error occurred', err }));
 });
 
-module.exports = router;
+module.exports = router; // Export the comment routes
