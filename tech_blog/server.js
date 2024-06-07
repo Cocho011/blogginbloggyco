@@ -3,7 +3,8 @@ const exphbs = require("express-handlebars");
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./config/connection");
-const allRoutes = require("./controllers");
+//const allRoutes = require("./controllers");
+const allRoutes = require("./controllers/index.js");
 require("dotenv").config();
 
 const app = express();
@@ -41,11 +42,12 @@ app.use(express.static("public"));
 app.use("/", allRoutes);
 
 // Error handling middleware
+/*
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).send('Something broke!');
 });
-
+*/
 // Sync Sequelize models to the database, then start the server
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => {
