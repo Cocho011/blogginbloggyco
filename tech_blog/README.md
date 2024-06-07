@@ -4,7 +4,9 @@
 
 This project is a CMS-style blog site, similar to WordPress, where developers can publish their blog posts and comment on other developers' posts. It is built using Node.js, Express.js, Sequelize, Handlebars.js, and MySQL. The application follows the MVC paradigm and uses express-session for authentication. The site is fully functional with options to sign up, log in, create, update, delete posts, and comment on posts. For this challenge, I concentrated more on ensuring successful functionality. For future improvements, I will add actual tech posts and comments. 
 
-Deployed site URL: 
+Heroku Deployed site URL: 
+
+https://git.heroku.com/shrouded-beach-06198.git 
 
 Screenshots of deployed app: 
 
